@@ -32,11 +32,13 @@ class _NavScreenState extends State<NavScreen> {
   Widget build(BuildContext context) {
     return DefaultTabController(length: _icons.length,
         child: Scaffold(
-          body: _screen[_selectedIndex],
-          bottomNavigationBar: CustomTabBar(
-            icon : _icons,
-            selectedIndex : _selectedIndex,
-            onTap: (index)=> setState(()=>_selectedIndex =index)
+          body: IndexedStack(index:_selectedIndex,children:_screen,),
+          bottomNavigationBar: Padding(padding: const EdgeInsets.only(bottom: 12.0),
+            child: CustomTabBar(
+              icon : _icons,
+              selectedIndex : _selectedIndex,
+              onTap: (index)=> setState(()=>_selectedIndex =index)
+            ),
           ),
         )
     );
